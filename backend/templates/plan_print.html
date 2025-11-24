@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Plan - {{company_name}}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1in;
+        }
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #111827;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .header {
+            border-bottom: 3px solid #0f6fff;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #0f6fff;
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        .header-meta {
+            color: #6b7280;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        .section-title {
+            color: #0f6fff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .section-content {
+            color: #374151;
+            font-size: 11pt;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .section-content p {
+            margin: 0 0 12px 0;
+        }
+        .section-content ul, .section-content ol {
+            margin: 12px 0;
+            padding-left: 25px;
+        }
+        .section-content li {
+            margin: 6px 0;
+        }
+        .citation {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1e40af;
+            font-size: 9pt;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 4px;
+            vertical-align: super;
+            font-weight: 600;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 10pt;
+            color: #6b7280;
+            padding: 10px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .page-number {
+            display: inline-block;
+        }
+        @media print {
+            .footer {
+                position: fixed;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{company_name}} - Account Plan</h1>
+        <div class="header-meta">
+            <span>Generated: {{date}}</span>
+            <span>User: {{user_name}}</span>
+        </div>
+    </div>
+
+    {{#sections}}
+    <div class="section">
+        <div class="section-title">{{title}}</div>
+        <div class="section-content">
+            {{{content}}}
+        </div>
+    </div>
+    {{/sections}}
+
+    <div class="footer">
+        <span class="page-number">Page <span id="pageNum"></span> of <span id="totalPages"></span></span>
+    </div>
+
+    <script>
+        // Page numbering
+        window.addEventListener('DOMContentLoaded', function() {
+            const totalPages = document.querySelectorAll('.section').length;
+            document.getElementById('totalPages').textContent = totalPages || 1;
+            // This will be updated by Playwright
+        });
+    </script>
+</body>
+</html>
+
