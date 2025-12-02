@@ -1,4 +1,3 @@
-// ChatGPT-like Research Chat Page
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChatSidebar } from '../components/ChatSidebar';
@@ -123,7 +122,6 @@ export default function ResearchChat() {
         </div>
       </nav>
 
-      {/* Chat Content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <div className="flex-shrink-0">
@@ -135,7 +133,6 @@ export default function ResearchChat() {
           />
         </div>
 
-        {/* Main Chat Window */}
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           <ChatWindow
             chatId={currentChatId}
@@ -145,7 +142,7 @@ export default function ResearchChat() {
               loadChats();
             }}
             onPlanUpdated={() => {
-              loadChats(); // Reload chats when plan is updated (to show updated chat title)
+              loadChats(); 
             }}
           />
         </div>
